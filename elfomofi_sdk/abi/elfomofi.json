@@ -1,0 +1,44 @@
+[
+  {
+    "inputs": [
+      { "name": "fromToken", "type": "address" },
+      { "name": "toToken", "type": "address" },
+      { "name": "fromAmount", "type": "uint256" }
+    ],
+    "name": "getAmountOut",
+    "outputs": [
+      { "name": "toAmount", "type": "uint256" }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "name": "fromToken", "type": "address" },
+      { "name": "toToken", "type": "address" },
+      { "name": "toAmount", "type": "uint256" }
+    ],
+    "name": "getAmountIn",
+    "outputs": [
+      { "name": "fromAmount", "type": "uint256" }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getSupportedPairs",
+    "outputs": [
+      {
+        "components": [
+          { "name": "tokenA", "type": "address" },
+          { "name": "tokenB", "type": "address" }
+        ],
+        "name": "",
+        "type": "tuple[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  }
+]
