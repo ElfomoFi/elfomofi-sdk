@@ -170,7 +170,7 @@ class ElfomoFiClient:
         self._current_block = result.block_number
         self._block_timestamp = result.block_timestamp
 
-        logger.info(
+        logger.debug(
             "Updated %d pair(s) at block %d (timestamp %d)",
             len(new_pairs),
             result.block_number,

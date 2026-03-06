@@ -23,6 +23,13 @@ BASE: Final[ChainConfig] = ChainConfig(
     helper_address="0xc1b13606FC7227f2554067aFb3fb12De75C02d81",
 )
 
+BSC: Final[ChainConfig] = ChainConfig(
+    chain_id=56,
+    name="Bsc",
+    helper_address="0x78015E3544d989f0712a0b9986cB05838c3fE06D",
+)
+
 CHAINS: Final[dict[int, ChainConfig]] = {
     BASE.chain_id: BASE,
+    BSC.chain_id: BSC,
 }
