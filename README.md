@@ -76,6 +76,7 @@ result.block_number     # int — block of the underlying state
 | Chain | ID | Helper address |
 |---|---|---|
 | Base | 8453 | `0xc1b13606FC7227f2554067aFb3fb12De75C02d81` |
+| Bsc  |  56  | `0x78015E3544d989f0712a0b9986cB05838c3fE06D` |
 
 ## Requirements
 
