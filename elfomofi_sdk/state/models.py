@@ -40,21 +40,43 @@ class ProbePoint:
 
 
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+#  Orderbook level
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+
+@dataclass(frozen=True, slots=True)
+class OrderbookLevel:
+    """A single level in the synthetic orderbook.
+
+    Derived from consecutive cumulative probe points.  Each level
+    represents a price band with a fixed marginal rate:
+
+        size_in  = probe[i].amount_in  - probe[i-1].amount_in
+        size_out = probe[i].amount_out - probe[i-1].amount_out
+        price    = size_out / size_in  (rational, kept as ints)
+    """
+
+    size_in: int   # input token size at this level
+    size_out: int  # output token size at this level
+
+
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 #  Direction
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 
 @dataclass(slots=True)
 class DirectionBook:
-    """Probe data for a single trade direction (e.g. quote → base).
+    """Orderbook levels for a single trade direction (e.g. quote → base).
 
-    The cumulative probe points are used directly for piecewise-linear
-    interpolation during quoting.
+    Built from cumulative probe points: each consecutive pair of probes
+    defines a level with ``(size_in, size_out)``.  The quoting engine
+    walks these levels to compute output amounts.
     """
 
     from_token: str
     to_token: str
-    probes: list[ProbePoint] = field(default_factory=list)
+    levels: list[OrderbookLevel] = field(default_factory=list)
     from_balance: int = 0  # vault balance of from_token
     to_balance: int = 0  # vault balance of to_token
 
