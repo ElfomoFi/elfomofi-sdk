@@ -16,6 +16,7 @@ from .client import ElfomoFiClient
 from .quoting.engine import get_amount_out
 from .state.models import (
     DirectionBook,
+    OrderbookLevel,
     ProbePoint,
     QuoteResult,
     TokenPair,
@@ -28,6 +29,7 @@ __all__ = [
     "ChainConfig",
     "ElfomoFiClient",
     "DirectionBook",
+    "OrderbookLevel",
     "ProbePoint",
     "QuoteResult",
     "TokenPair",
