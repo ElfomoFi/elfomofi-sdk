@@ -98,6 +98,16 @@ class ElfomoFiClient:
         t = self._provider.w3.to_checksum_address(to_token)
         return self._directions.get((f, t))
 
+    def max_size(self, from_token: str, to_token: str) -> int:
+        """Max input amount covered by probe data for a direction.
+
+        Returns the sum of all level ``size_in`` values, or 0 if no data.
+        """
+        direction = self._get_direction(from_token, to_token)
+        if direction is None:
+            return 0
+        return sum(lvl.size_in for lvl in direction.levels)
+
     # ── Quoting (synchronous, no RPC) ─────────────────────────────
 
     def quote(
