@@ -35,6 +35,10 @@ async def main() -> None:
     print(f"Orderbook loaded at block {client.current_block}")
     print(f"Tracked pairs: {client.pairs}\n")
 
+    # ── Max quotable size ──────────────────────────────────────────
+    max_in = client.max_amount_in(WETH, USDC)
+    print(f"Max size WETH→USDC: {max_in / 10**18:.2f} WETH")
+
     # ── Forward quote: 1 WETH → ? USDC ───────────────────────────
     result = client.quote(WETH, USDC, 10**18)
     if result is None:
