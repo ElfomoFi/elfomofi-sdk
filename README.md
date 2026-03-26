@@ -32,6 +32,10 @@ async def main():
     )
     await client.start()
 
+    # Max quotable size for this direction
+    max_in = client.max_amount_in(WETH, USDC)
+    print(f"Max size: {max_in / 1e18:.2f} WETH")
+
     # Quote: sell 1 WETH for USDC (no RPC call)
     result = client.quote(WETH, USDC, 10**18)
     print(f"1 WETH = {result.amount_out / 1e6:,.2f} USDC")
@@ -58,6 +62,7 @@ client = ElfomoFiClient(rpc_url, ws_url, chain_id)
 | `await client.start()` | Subscribe to blocks and fetch initial state |
 | `await client.stop()` | Disconnect |
 | `client.quote(from_token, to_token, amount_in)` | Synchronous quote, returns `QuoteResult` or `None` |
+| `client.max_amount_in(from_token, to_token)` | Max input amount covered by probe data (beyond this, output is capped) |
 | `client.current_block` | Latest block number |
 | `client.block_timestamp` | Latest block timestamp |
 | `client.pairs` | List of `(base, quote)` tuples |
