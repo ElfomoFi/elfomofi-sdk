@@ -29,7 +29,14 @@ BSC: Final[ChainConfig] = ChainConfig(
     helper_address="0x78015E3544d989f0712a0b9986cB05838c3fE06D",
 )
 
+X_LAYER: Final[ChainConfig] = ChainConfig(
+    chain_id=196,
+    name="X Layer",
+    helper_address="0x20D24Ee45c9b338Ef7ACf2eEde75183B9E2C9E3c",
+)
+
 CHAINS: Final[dict[int, ChainConfig]] = {
     BASE.chain_id: BASE,
     BSC.chain_id: BSC,
+    X_LAYER.chain_id: X_LAYER,
 }
