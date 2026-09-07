@@ -1,19 +1,30 @@
+<<<<<<< HEAD
 """Orderbook builder.
 
 Converts cumulative probe points into orderbook levels and constructs
 ``DirectionBook`` instances.  Each consecutive pair of cumulative probes
 defines one level: ``(size_in, size_out)``.
+=======
+"""Probe-based builder.
+
+Constructs ``DirectionBook`` from raw probe data.  Quoting is done via
+piecewise-linear interpolation directly over cumulative probe points.
+>>>>>>> 253e165 (init)
 """
 
 from __future__ import annotations
 
 from .models import (
     DirectionBook,
+<<<<<<< HEAD
     OrderbookLevel,
+=======
+>>>>>>> 253e165 (init)
     ProbePoint,
 )
 
 
+<<<<<<< HEAD
 def build_levels(probes: list[ProbePoint]) -> list[OrderbookLevel]:
     """Derive orderbook levels from cumulative probe points.
 
@@ -42,6 +53,8 @@ def build_levels(probes: list[ProbePoint]) -> list[OrderbookLevel]:
     return levels
 
 
+=======
+>>>>>>> 253e165 (init)
 def build_direction_book(
     from_token: str,
     to_token: str,
@@ -49,12 +62,20 @@ def build_direction_book(
     from_balance: int = 0,
     to_balance: int = 0,
 ) -> DirectionBook:
+<<<<<<< HEAD
     """Build a :class:`DirectionBook` from cumulative probe data."""
     levels = build_levels(probes)
     return DirectionBook(
         from_token=from_token,
         to_token=to_token,
         levels=levels,
+=======
+    """Build a :class:`DirectionBook` from raw probe data."""
+    return DirectionBook(
+        from_token=from_token,
+        to_token=to_token,
+        probes=probes,
+>>>>>>> 253e165 (init)
         from_balance=from_balance,
         to_balance=to_balance,
     )

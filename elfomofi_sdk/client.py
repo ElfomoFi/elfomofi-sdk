@@ -98,6 +98,7 @@ class ElfomoFiClient:
         t = self._provider.w3.to_checksum_address(to_token)
         return self._directions.get((f, t))
 
+<<<<<<< HEAD
     def max_amount_in(self, from_token: str, to_token: str) -> int:
         """Max input amount covered by probe data for a direction.
 
@@ -108,6 +109,8 @@ class ElfomoFiClient:
             return 0
         return sum(lvl.size_in for lvl in direction.levels)
 
+=======
+>>>>>>> 253e165 (init)
     # ── Quoting (synchronous, no RPC) ─────────────────────────────
 
     def quote(
@@ -180,7 +183,11 @@ class ElfomoFiClient:
         self._current_block = result.block_number
         self._block_timestamp = result.block_timestamp
 
+<<<<<<< HEAD
         logger.debug(
+=======
+        logger.info(
+>>>>>>> 253e165 (init)
             "Updated %d pair(s) at block %d (timestamp %d)",
             len(new_pairs),
             result.block_number,

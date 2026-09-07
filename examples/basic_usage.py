@@ -20,8 +20,13 @@ async def main() -> None:
     WETH = "0x4200000000000000000000000000000000000006"
     USDC = "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913"
 
+<<<<<<< HEAD
     RPC_URL = os.environ.get("RPC_URL", "https://base-rpc.publicnode.com")
     WS_URL = os.environ.get("WS_URL", "wss://base-rpc.publicnode.com")
+=======
+    RPC_URL = os.environ["RPC_URL"]
+    WS_URL = os.environ["WS_URL"]
+>>>>>>> 253e165 (init)
     # 1. Create the client
     client = ElfomoFiClient(
         rpc_url=RPC_URL,
@@ -35,10 +40,13 @@ async def main() -> None:
     print(f"Orderbook loaded at block {client.current_block}")
     print(f"Tracked pairs: {client.pairs}\n")
 
+<<<<<<< HEAD
     # ── Max quotable size ──────────────────────────────────────────
     max_in = client.max_amount_in(WETH, USDC)
     print(f"Max size WETH→USDC: {max_in / 10**18:.2f} WETH")
 
+=======
+>>>>>>> 253e165 (init)
     # ── Forward quote: 1 WETH → ? USDC ───────────────────────────
     result = client.quote(WETH, USDC, 10**18)
     if result is None:

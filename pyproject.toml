@@ -36,7 +36,11 @@ examples = [
 ]
 
 [project.urls]
+<<<<<<< HEAD
 Repository = "https://github.com/ElfomoFi/elfomofi-sdk"
+=======
+Repository = "https://github.com/olegggatttor/elfomofi-sdk"
+>>>>>>> 253e165 (init)
 
 [tool.mypy]
 python_version = "3.11"
@@ -46,6 +50,9 @@ warn_unused_configs = true
 
 [tool.setuptools.packages.find]
 include = ["elfomofi_sdk*"]
+<<<<<<< HEAD
 
 [tool.setuptools.package-data]
 elfomofi_sdk = ["abi/*.json", "py.typed"]
+=======
+>>>>>>> 253e165 (init)

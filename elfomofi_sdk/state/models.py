@@ -40,6 +40,7 @@ class ProbePoint:
 
 
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+<<<<<<< HEAD
 #  Orderbook level
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -61,22 +62,35 @@ class OrderbookLevel:
 
 
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+=======
+>>>>>>> 253e165 (init)
 #  Direction
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 
 @dataclass(slots=True)
 class DirectionBook:
+<<<<<<< HEAD
     """Orderbook levels for a single trade direction (e.g. quote → base).
 
     Built from cumulative probe points: each consecutive pair of probes
     defines a level with ``(size_in, size_out)``.  The quoting engine
     walks these levels to compute output amounts.
+=======
+    """Probe data for a single trade direction (e.g. quote → base).
+
+    The cumulative probe points are used directly for piecewise-linear
+    interpolation during quoting.
+>>>>>>> 253e165 (init)
     """
 
     from_token: str
     to_token: str
+<<<<<<< HEAD
     levels: list[OrderbookLevel] = field(default_factory=list)
+=======
+    probes: list[ProbePoint] = field(default_factory=list)
+>>>>>>> 253e165 (init)
     from_balance: int = 0  # vault balance of from_token
     to_balance: int = 0  # vault balance of to_token
 
