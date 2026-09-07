@@ -35,8 +35,15 @@ X_LAYER: Final[ChainConfig] = ChainConfig(
     helper_address="0x20D24Ee45c9b338Ef7ACf2eEde75183B9E2C9E3c",
 )
 
+ROBINHOOD: Final[ChainConfig] = ChainConfig(
+    chain_id=4663,
+    name="Robinhood Chain",
+    helper_address="0x20D24Ee45c9b338Ef7ACf2eEde75183B9E2C9E3c",
+)
+
 CHAINS: Final[dict[int, ChainConfig]] = {
     BASE.chain_id: BASE,
     BSC.chain_id: BSC,
     X_LAYER.chain_id: X_LAYER,
+    ROBINHOOD.chain_id: ROBINHOOD,
 }
