@@ -23,7 +23,6 @@ BASE: Final[ChainConfig] = ChainConfig(
     helper_address="0xc1b13606FC7227f2554067aFb3fb12De75C02d81",
 )
 
-
 BSC: Final[ChainConfig] = ChainConfig(
     chain_id=56,
     name="Bsc",
