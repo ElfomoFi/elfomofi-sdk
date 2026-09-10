@@ -61,19 +61,41 @@ class ElfomoFiClient:
         self._current_block: int = 0
         self._block_timestamp: int = 0
         self._initialized = asyncio.Event()
+        self._running = False
+        self._lifecycle_lock = asyncio.Lock()
 
     # ── Lifecycle ──────────────────────────────────────────────────
 
     async def start(self, timeout: float = 30.0) -> None:
         """Start the block listener and wait for the first snapshot."""
-        logger.info("Starting ElfomoFi client…")
-        await self._listener.start(self._on_new_block)
-        await asyncio.wait_for(self._initialized.wait(), timeout=timeout)
+        async with self._lifecycle_lock:
+            if self._running:
+                return
+
+            logger.info("Starting ElfomoFi client…")
+            self._initialized.clear()
+            await self._listener.start(self._on_new_block)
+            try:
+                await asyncio.wait_for(self._initialized.wait(), timeout=timeout)
+            except (TimeoutError, asyncio.CancelledError):
+                await self._listener.stop()
+                self._initialized.clear()
+                raise
+            self._running = True
 
     async def stop(self) -> None:
         """Stop the block listener."""
-        logger.info("Stopping ElfomoFi client…")
-        await self._listener.stop()
+        async with self._lifecycle_lock:
+            if not self._running:
+                self._initialized.clear()
+                return
+
+            logger.info("Stopping ElfomoFi client…")
+            try:
+                await self._listener.stop()
+            finally:
+                self._running = False
+                self._initialized.clear()
 
     # ── Read-only accessors ────────────────────────────────────────
 
