@@ -11,7 +11,7 @@ Architecture
    piecewise-linear interpolation — **no RPC calls**.
 """
 
-from .chains import BASE, BSC, CHAINS, ROBINHOOD, X_LAYER, ChainConfig
+from .chains import ARC, BASE, BSC, CHAINS, ROBINHOOD, X_LAYER, ChainConfig
 from .client import ElfomoFiClient
 from .quoting.engine import get_amount_out
 from .state.models import (
@@ -23,6 +23,7 @@ from .state.models import (
 )
 
 __all__ = [
+    "ARC",
     "BASE",
     "BSC",
     "CHAINS",
